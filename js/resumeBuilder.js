@@ -21,8 +21,39 @@ var bio = {
       "employer" : "ITWORX",
       "title" : "Project Leader",
       "location"  : "Cairo-Egypt",
-      "dates" : "April 2014 - On Going",
+      "dates" : "April 2015 - On Going",
       "description" : "Managing several support & development projects for a multinational leader in plant bioinformatics and the seeds business."
+    },{
+      "employer" : "ITWORX",
+      "title" : "Team Leader",
+      "location"  : "Cairo-Egypt",
+      "dates" : "September 2010 - March 2015",
+      "description" : "Handling production systems' support, managing project life cycle & conducting training & handovers to other vendors."
+    },{
+      "employer" : "ITWORX",
+      "title" : "Senior Software Engineer",
+      "location"  : "Cairo-Egypt",
+      "dates" : "August 2007 - August 2010",
+      "description" : "Java Web Developer."
+    },{
+      "employer" : "ITWORX",
+      "title" : "Software Engineer",
+      "location"  : "Cairo-Egypt",
+      "dates" : "August 2006 - August 2007",
+      "description" : "Java Web Developer."
+    }
+  ],
+  "projects"  : [
+    {
+      "title" : "Vodafone Capacity Management Tool",
+      "dates" : "February 2013 - April 2014",
+      "description" : "ETL for different types of files.",
+      "project_img" : "./images/vodafone.jpg"
+    },{
+      "title" : "EITC du Selfcare",
+      "dates" : "November 2006 - October 2011",
+      "description" : "eCare portal for Dubai second telecom company 'du'",
+      "project_img" : "./images/du.jpg"
     }
   ],
   "education" : {
@@ -88,8 +119,51 @@ var bio = {
         "url" : "http://education.oracle.com"
       }
     ]
+  },
+  fill_jobs : function () {
+    var formattedEmployer, formattedTitle;
+    for(job in bio.jobs){
+      $("#workExperience").append(HTMLworkStart);
+      formattedEmployer = HTMLworkEmployer.replace('%data%', bio.jobs[job].employer);
+      formattedTitle = HTMLworkTitle.replace('%data%', bio.jobs[job].title);
+      $(".work-entry:last").append(formattedEmployer + formattedTitle);
+      $(".work-entry:last").append(HTMLworkDates.replace('%data%', bio.jobs[job].dates));
+      $(".work-entry:last").append(HTMLworkLocation.replace('%data%', bio.jobs[job].location));
+      $(".work-entry:last").append(HTMLworkDescription.replace('%data%', bio.jobs[job].description));
+    }
+  },
+  fill_projects : function () {
+    for(project in bio.projects){
+      $("#projects").append(HTMLprojectStart);
+      $(".project-entry:last").append(HTMLprojectTitle.replace('%data%', bio.projects[project].title));
+      $(".project-entry:last").append(HTMLprojectDates.replace('%data%', bio.projects[project].dates));
+      $(".project-entry:last").append(HTMLprojectDescription.replace('%data%', bio.projects[project].description));
+      $(".project-entry:last").append(HTMLprojectImage.replace('%data%', bio.projects[project].project_img));
+    }
+  },
+  fill_education  : function () {
+    for(school in bio.education.schools){
+      $("#education").append(HTMLschoolStart);
+      $(".education-entry:last").append(HTMLschoolName.replace("%data%", bio.education.schools[school].name).replace("#", bio.education.schools[school].url)
+        +HTMLschoolDegree.replace("%data%", bio.education.schools[school].degree));
+      $(".education-entry:last").append(HTMLschoolDates.replace("%data%", bio.education.schools[school].dates));
+      $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", bio.education.schools[school].location));
+      $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", bio.education.schools[school].majors));
+    }
+    $("#education").append(HTMLonlineClasses);
+    for(course in bio.education.onlineCourses){
+      $("#education").append(HTMLschoolStart);
+      $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", bio.education.onlineCourses[course].title).replace("#", bio.education.onlineCourses[school].url)
+        + HTMLonlineSchool.replace("%data%", bio.education.onlineCourses[course].school));
+      $(".education-entry:last").append(HTMLonlineDates.replace("%data%", bio.education.onlineCourses[course].dates));
+      $(".education-entry:last").append(HTMLonlineURL.replace("%data%", bio.education.onlineCourses[course].url).
+        replace("#", bio.education.onlineCourses[course].url));
+    }
   }
 };
+
+
+// ################################################################
 
 /*  Header Manipulation */
 
@@ -124,17 +198,42 @@ if(bio.skills != null && bio.skills.length > 0){
   }
 }
 /*  end of Header Manipulation */
-
+// ################################################################
 /*  workExperience Manipulation */
-var formattedEmployer, formattedTitle;
-for(job in bio.jobs){
-  $("#workExperience").append(HTMLworkStart);
-  formattedEmployer = HTMLworkEmployer.replace('%data%', bio.jobs[job].employer);
-  formattedTitle = HTMLworkTitle.replace('%data%', bio.jobs[job].title);
-  $(".work-entry:last").append(formattedEmployer + formattedTitle);
-  $(".work-entry:last").append(HTMLworkDates.replace('%data%', bio.jobs[job].dates));
-  $(".work-entry:last").append(HTMLworkLocation.replace('%data%', bio.jobs[job].location));
-  $(".work-entry:last").append(HTMLworkDescription.replace('%data%', bio.jobs[job].description));
-}
-
+bio.fill_jobs();
 /*  end of workExperience Manipulation */
+// ################################################################
+/*  projects Manipulation */
+bio.fill_projects();
+/*  end of projects Manipulation */
+// ################################################################
+
+/* education Manipulation */
+bio.fill_education();
+
+/* end of education Manipulation */
+// ################################################################
+
+/* mapDiv section */
+$("#mapDiv").append(googleMap);
+
+function collectLocations() {
+  var locations = [];
+  for(job in bio.jobs){
+    locations.push(bio.jobs[job].location);
+  }
+  for(school in bio.education.schools){
+    locations.push(bio.education.schools[school].location);
+  }
+  return locations;
+}
+/* end of mapDiv section */
+// ################################################################
+
+/* Footer section */
+$("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+$("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+$("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+$("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+$("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+/* end of Footer section */
