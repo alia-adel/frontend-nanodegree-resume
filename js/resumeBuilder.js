@@ -77,6 +77,12 @@ var bio = {
     ],
     "onlineCourses" : [
       {
+        "title" : "Intro to jQuery",
+        "school"  : "Udacity",
+        "dates" : "2017",
+        "url" : "https://classroom.udacity.com/courses/ud245"
+      },
+      {
         "title" : "Object-Oriented JavaScript",
         "school"  : "Udacity",
         "dates" : "2017",
