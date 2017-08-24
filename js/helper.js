@@ -226,9 +226,7 @@ function initializeMap() {
   window.mapBounds = new google.maps.LatLngBounds();
 
   // locations is an array of location strings returned from locationFinder()
-  //The following line commented by Alia to override the location function
-  // locations = locationFinder();
-  locations = collectLocations(); //Added by Alia
+  locations = locationFinder();
 
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array
@@ -246,6 +244,6 @@ window.addEventListener('load', initializeMap);
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
 window.addEventListener('resize', function(e) {
-  // Make sure the map bounds get updated on page resize
+  //Make sure the map bounds get updated on page resize
  map.fitBounds(mapBounds);
 });
