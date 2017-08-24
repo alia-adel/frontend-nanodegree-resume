@@ -108,7 +108,7 @@ let education = {
 		}
 	],
 	display: function() {
-		console.log('do something else');
+
 	}
 };
 
@@ -142,7 +142,20 @@ let work = {
 		}
 	],
 	display: function() {
-		console.log('do something for work');
+		let workTitle = '';
+
+		work.jobs.forEach(function(element) {
+			$('#workExperience').append(HTMLworkStart);
+
+			workTitle = HTMLworkEmployer.replace(DATA_PLACEHOLDER, element.employer)
+				+ HTMLworkTitle.replace(DATA_PLACEHOLDER, element.title);
+
+			$('.work-entry:last').append(workTitle)
+				.append(HTMLworkDates.replace(DATA_PLACEHOLDER, element.dates))
+				.append(HTMLworkLocation.replace(DATA_PLACEHOLDER, element.location))
+				.append(HTMLworkDescription.replace(DATA_PLACEHOLDER, element.description));
+		});
+
 	}
 };
 
@@ -151,25 +164,33 @@ let work = {
 let projects = {
 	projects : [
 		{
-			'title' : 'Syngenta',
-			'dates' : 'November 2013 - On Going',
-			'description' : 'Managing different support & project teams for several applications '
+			title : 'Syngenta',
+			dates : 'November 2013 - On Going',
+			description : 'Managing different support & project teams for several applications '
 				+ 'for a multinational leader in plant bioinformatics and the seeds business.',
-			'project_img' : './images/Syngenta.png'
+			images : ['./images/Syngenta.png']
 		}, {
-			'title' : 'Vodafone Capacity Management Tool',
-			'dates' : 'February 2013 - April 2014',
-			'description' : 'ETL for different types of files.',
-			'project_img' : './images/Vodafone.png'
+			title : 'Vodafone Capacity Management Tool',
+			dates : 'February 2013 - April 2014',
+			description : 'ETL for different types of files.',
+			images : ['./images/Vodafone.png']
 		}, {
-			'title' : 'EITC du Selfcare',
-			'dates' : 'November 2006 - October 2011',
-			'description' : 'eCare portal for Dubai second telecom company \'du\'',
-			'project_img' : './images/du.jpg'
+			title : 'EITC du Selfcare',
+			dates : 'November 2006 - October 2011',
+			description : 'eCare portal for Dubai second telecom company \'du\'',
+			images : ['./images/du.jpg']
 		}
 	],
 	display: function() {
-		console.log('do something for projects');
+		projects.projects.forEach(function(element) {
+			$('#projects').append(HTMLprojectStart);
+			$('.project-entry:last').append(HTMLprojectTitle.replace(DATA_PLACEHOLDER, element.title));
+			$('.project-entry:last').append(HTMLprojectDates.replace(DATA_PLACEHOLDER, element.dates));
+			$('.project-entry:last').append(HTMLprojectDescription.replace(DATA_PLACEHOLDER, element.description));
+			element.images.forEach(function(image){
+				$('.project-entry:last').append(HTMLprojectImage.replace(DATA_PLACEHOLDER, image));
+			})
+		});
 	}
 };
 
