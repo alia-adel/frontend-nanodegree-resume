@@ -13,8 +13,8 @@ let bio = {
 		mobile: '+2012345678',
 		email: 'alia.adel.83@gmail.com',
 		github: 'https://github.com/alia-adel',
-		twitter: 'aliaadel83',
-		location: 'Cairo, Egypt'
+		twitter: '@aliaadel83',
+		location: 'Nasr City, Cairo, Egypt'
 	},
 	welcomeMessage: 'Welcome to my interactive resume',
 	skills: ['Project Management', 'Frontend Development'],
@@ -50,14 +50,14 @@ let education = {
 	schools: [
 		{
 			name: 'Information Technology Institute',
-			location: 'Cairo, Egypt',
+			location: 'Giza, Cairo, Egypt',
 			degree: 'Pre-Master',
 			majors: ['Systems Development'],
 			dates: 'September 2005 - July 2006',
 			url: 'http://www.iti.gov.eg/'
 		}, {
 			name: 'Information Technology Institute',
-			location: 'Cairo, Egypt',
+			location: 'Al Dokki, Cairo, Egypt',
 			degree: 'Bachelor',
 			majors: ['Information Systems'],
 			dates: 'September 2001 - May 2005',
@@ -108,7 +108,26 @@ let education = {
 		}
 	],
 	display: function() {
+		education.schools.forEach(function(school) {
+			$('#education').append(HTMLschoolStart);
+			$('.education-entry:last').append(HTMLschoolName.replace(DATA_PLACEHOLDER, school.name)
+				+ HTMLschoolDegree.replace(DATA_PLACEHOLDER, school.degree));
+			$('.education-entry:last').append(HTMLschoolDates.replace(DATA_PLACEHOLDER, school.dates));
+			$('.education-entry:last').append(HTMLschoolLocation.replace(DATA_PLACEHOLDER, school.location));
+			school.majors.forEach(function(major) {
+				$('.education-entry:last').append(HTMLschoolMajor.replace(DATA_PLACEHOLDER, major));
+			});
+		});
 
+		$('#education').append(HTMLonlineClasses);
+
+		education.onlineCourses.forEach(function(course) {
+			$('#education').append(HTMLschoolStart);
+			$('.education-entry:last').append(HTMLonlineTitle.replace(DATA_PLACEHOLDER, course.title)
+					+ HTMLonlineSchool.replace(DATA_PLACEHOLDER, course.school));
+			$('.education-entry:last').append(HTMLonlineDates.replace(DATA_PLACEHOLDER, course.dates));
+			$('.education-entry:last').append(HTMLonlineURL.replace(DATA_PLACEHOLDER, course.url));
+		});
 	}
 };
 
@@ -118,25 +137,25 @@ let work = {
 		{
 			employer : 'ITWORX',
 			title : 'Project Manager',
-			location  : 'Cairo, Egypt',
+			location  : 'FreeZone, Nasr City, Cairo, Egypt',
 			dates : 'April 2015 - On Going',
 			description : 'Managing several support & development projects for a multinational leader in plant bioinformatics and the seeds business.'
 		}, {
 			employer : 'ITWORX',
 			title : 'Team Leader',
-			location  : 'Cairo, Egypt',
+			location  : 'FreeZone, Nasr City, Cairo, Egypt',
 			dates : 'September 2010 - March 2015',
 			description : 'Handling production systems\' support, managing project life cycle & conducting training & handovers to other vendors.'
 		}, {
 			employer : 'ITWORX',
 			title : 'Senior Software Engineer',
-			location  : 'Cairo, Egypt',
+			location  : 'FreeZone, Nasr City, Cairo, Egypt',
 			dates : 'August 2007 - August 2010',
 			description : 'Java Web Developer.'
 		}, {
 			employer : 'ITWORX',
 			title : 'Software Engineer',
-			location  : 'Cairo, Egypt',
+			location  : 'FreeZone, Nasr City, Cairo, Egypt',
 			dates : 'August 2006 - August 2007',
 			description : 'Java Web Developer.'
 		}
@@ -194,7 +213,15 @@ let projects = {
 	}
 };
 
+
+/* Add the map to the page */
+function displayMap() {
+	$('#mapDiv').append(googleMap);
+}
+
+/* Resume filling calls */
 bio.display();
 education.display();
 work.display();
 projects.display();
+displayMap();
