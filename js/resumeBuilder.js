@@ -126,7 +126,8 @@ let education = {
 			$('.education-entry:last').append(HTMLonlineTitle.replace(DATA_PLACEHOLDER, course.title)
 					+ HTMLonlineSchool.replace(DATA_PLACEHOLDER, course.school));
 			$('.education-entry:last').append(HTMLonlineDates.replace(DATA_PLACEHOLDER, course.dates));
-			$('.education-entry:last').append(HTMLonlineURL.replace(DATA_PLACEHOLDER, course.url));
+			$('.education-entry:last').append(HTMLonlineURL.replace(
+				DATA_PLACEHOLDER, course.url).replace('#', course.url));
 		});
 	}
 };
@@ -208,7 +209,7 @@ let projects = {
 			$('.project-entry:last').append(HTMLprojectDescription.replace(DATA_PLACEHOLDER, element.description));
 			element.images.forEach(function(image){
 				$('.project-entry:last').append(HTMLprojectImage.replace(DATA_PLACEHOLDER, image));
-			})
+			});
 		});
 	}
 };
