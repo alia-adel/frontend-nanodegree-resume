@@ -3,8 +3,11 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 const DATA_PLACEHOLDER = '%data%';
 const CONTACT_PLACEHOLDER = '%contact%';
+const GOOGLE_SEARCH_QUERY = 'https://www.google.com/search?q=';
+const URL_REGEX = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
-/*  My personal bio object */
+
+/*  My personal biography object */
 let bio = {
     name: 'Alia Adel',
     role: 'Projet Manager',
@@ -17,7 +20,7 @@ let bio = {
     },
     welcomeMessage: 'Welcome to my interactive resume',
     skills: ['Project Management', 'Frontend Development'],
-    biopic: './images/Alia.jpg',
+    biopic: './images/profile.jpg',
     display: function() {
         $('#header').prepend(HTMLheaderRole.replace(DATA_PLACEHOLDER, bio.role));
         $('#header').prepend(HTMLheaderName.replace(DATA_PLACEHOLDER, bio.name));
@@ -139,10 +142,11 @@ let education = {
                 HTMLonlineSchool.replace(DATA_PLACEHOLDER, course.school));
             $('.education-entry:last').append(HTMLonlineDates.replace(DATA_PLACEHOLDER, course.dates));
             $('.education-entry:last').append(HTMLonlineURL.replace(
-                DATA_PLACEHOLDER, course.url).replace('#', course.url));
+                DATA_PLACEHOLDER, course.url));
         });
     }
 };
+
 
 /* My work info. */
 let work = {
@@ -179,7 +183,6 @@ let work = {
 	    }
     ],
     display: function() {
-
         //loop over resume's jobs
         work.jobs.forEach(function(element) {
             $('#workExperience').append(HTMLworkStart);
@@ -189,9 +192,9 @@ let work = {
                 .append(HTMLworkLocation.replace(DATA_PLACEHOLDER, element.location))
                 .append(HTMLworkDescription.replace(DATA_PLACEHOLDER, element.description));
         });
-
     }
 };
+
 
 /* My projects' info. */
 
@@ -218,7 +221,6 @@ let projects = {
 	    }
     ],
     display: function() {
-
     	//Loop over resume's projects
         projects.projects.forEach(function(element) {
             $('#projects').append(HTMLprojectStart);
@@ -234,11 +236,39 @@ let projects = {
 
 
 /**
+* @description: Add a value to the href property & add target='_blank'
+*/
+function updateLinks() {
+	let links = $('a');
+	for(let i=0; i<links.length; i++) {
+		isValidURL(links[i].text)? $(links[i]).attr('href', links[i].text)
+			: $(links[i]).attr('href', new URL(GOOGLE_SEARCH_QUERY + links[i].text));
+		$(links[i]).attr('target', '_blank');
+	}
+};
+
+
+/**
+* @description: Utility function to validate URL
+* @param {String} url
+*/
+function isValidURL(url) {
+    try {
+        return URL_REGEX.test(url);
+    } catch (e) {
+        // Malformed URI
+        return false;
+    }
+};
+
+
+/**
 * @description: Add the map <div> to the page
 */
 function displayMap() {
     $('#mapDiv').append(googleMap);
 };
+
 
 /* Resume filling calls */
 bio.display();
@@ -246,3 +276,4 @@ education.display();
 work.display();
 projects.display();
 displayMap();
+updateLinks();
