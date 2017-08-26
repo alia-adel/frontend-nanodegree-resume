@@ -251,8 +251,6 @@ let projects = {
 function updateLinks() {
 	let links = $('a');
 	for(let i=0; i<links.length; i++) {
-		// isValidURL(links[i].text)? $(links[i]).attr('href', links[i].text)
-		// 	: $(links[i]).attr('href', new URL(GOOGLE_SEARCH_QUERY + links[i].text));
 		if(isValidURL(links[i].text)) {
 			$(links[i]).attr('href', links[i].text);
 			$(links[i]).attr('target', '_blank');
