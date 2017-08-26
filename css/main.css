@@ -1,0 +1,110 @@
+
+
+/*General*/
+body {
+	font-family: 'Lato', 'Sans Serif';
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flex-row {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 10px;
+}
+
+.card-box {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
+  -moz-box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
+  box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
+  margin: 20px 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.border-bottom {
+  border-bottom: groove 2px  lightgray;
+  padding-bottom: 10px;
+}
+
+/*Navigation Styles*/
+.nav-link:focus,
+.nav-link:active {
+  background-color: #F18D9E;
+  border-radius: 4px;
+}
+
+/*Main Page sections*/
+#main {
+  position: relative;
+  top: 100px;
+}
+
+/*Header section*/
+#header {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.biopic {
+  border-radius: 50%;
+}
+
+/*Work Experience*/
+#workExperience {
+  padding: 20px;
+}
+
+/*Projects*/
+#projects {
+  padding: 20px;
+}
+
+/*Education*/
+#education {
+  padding: 20px;
+}
+
+/*Google Map*/
+#map {
+  display: block;
+  height: 100%;
+  /*margin: 0 5%;*/
+}
+
+#mapDiv {
+  height: 400px;
+  width: 100%;
+  padding-bottom: 5%;
+}
+
+/*Footer (Let's connect)*/
+#lets-connect {
+  text-align: center;
+}
+
+#footerContacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+

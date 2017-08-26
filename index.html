@@ -23,39 +23,70 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   <title>Resume</title>
 
   <!-- Load the page styles. -->
-  <link href="css/style.css" rel="stylesheet">
+  <!-- TODO uncomment the following style sheet if you want to see the old resume -->
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
+
+  <!-- TODO comment the following style sheets if you want to see the old resume -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
-<body>
-  <div id="main">
+<body id="page-top" class="container">
+  <!-- TODO comment the navigation section in case you need to see the old resume styles -->
+  <!-- Navigation -->
+  <nav class="row navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#header">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#workExperience">Work Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#lets-connect">Contact Me</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="main" class="row">
     <!--
     Everything from here to the <script> tag below is the skeleton of your
     website. Your code will add information to each of the sections of the
     resume below. You can pretty easily figure out what each section will
     display by looking at the id or at what's written between the <h2> tags.
     -->
-    <div id="header" class="center-content clear-fix">
+    <section id="header" class="center-content clear-fix col-xs-12 border-bottom">
       <ul id="topContacts" class="flex-box"></ul>
-    </div>
+    </section>
     <div style="clear: both;"></div>
-    <div id="workExperience" class="gray">
+    <section id="workExperience" class="gray col-xs-12 card-box">
       <h2>Work Experience</h2>
-    </div>
-    <div id="projects">
+    </section>
+    <section id="projects" class="col-xs-12 card-box">
       <h2>Projects</h2>
-    </div>
-    <div id="education" class="gray">
+    </section>
+    <section id="education" class="gray col-xs-12 card-box">
       <h2>Education</h2>
-    </div>
-    <div id="mapDiv">
+    </section>
+    <section id="mapDiv" class="col-xs-12">
       <h2>Where I've Lived and Worked</h2>
-    </div>
-    <div id="lets-connect" class="dark-gray">
-      <h2 class="orange center-text">Let's Connect</h2>
-        <ul id="footerContacts" class="flex-box">
+    </section>
+    <section id="lets-connect" class="dark-gray row flex-col">
+      <h2 class="orange center-text col-xs-12">Let's Connect</h2>
+        <ul id="footerContacts" class="flex-box col-xs-12 flex-row">
       </ul>
-    </div>
+    </section>
   </div>
 
   <!-- "HTML is loaded by the browser in the order it appears in the file. If the JavaScript is loaded first and it is supposed to affect the HTML below it, it might not work, as the JavaScript would be loaded before the HTML it is supposed to work on. Therefore, putting JavaScript near the bottom of the HTML page is often the best strategy."
@@ -77,7 +108,19 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   the DOM. jQuery is fast and easy to use, but it doesn't do anything
   you can't accomplish with vanilla (regular) JavaScript.
   -->
-  <script src="js/jQuery.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+
+  <!-- @credits https://blackrockdigital.github.io/startbootstrap-scrolling-nav/  to help build the scrolling nav -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
 
   <!-- More on helper.js in the class -->
   <script src="js/helper.js"></script>
@@ -134,6 +177,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     if(document.getElementById('map') === null) {
       document.getElementById('mapDiv').style.display = 'none';
     }
+
   </script>
     <!--
     Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!

@@ -18,7 +18,7 @@ let bio = {
         twitter: '@aliaadel83',
         location: 'Nasr City, Cairo, Egypt'
     },
-    welcomeMessage: 'Welcome to my interactive resume',
+    welcomeMessage: 'I\'m a software project manager with a passion for UI & frontend development.',
     skills: ['Project Management', 'Frontend Development'],
     biopic: './images/profile.jpg',
     display: function() {
@@ -63,7 +63,7 @@ let education = {
 	        url: 'http://www.iti.gov.eg/'
 	    },
 	    {
-	        name: 'Information Technology Institute',
+	        name: 'Faculty of Computers and information',
 	        location: 'Al Dokki, Cairo, Egypt',
 	        degree: 'Bachelor',
 	        majors: ['Information Systems'],
@@ -123,7 +123,7 @@ let education = {
     ],
     display: function() {
     	//Loop over resume's education
-        education.schools.forEach(function(school) {
+        education.schools.forEach(function(school, index) {
             $('#education').append(HTMLschoolStart);
             $('.education-entry:last').append(HTMLschoolName.replace(DATA_PLACEHOLDER, school.name) +
                 HTMLschoolDegree.replace(DATA_PLACEHOLDER, school.degree));
@@ -132,17 +132,23 @@ let education = {
             school.majors.forEach(function(major) {
                 $('.education-entry:last').append(HTMLschoolMajor.replace(DATA_PLACEHOLDER, major));
             });
+
+            $('.education-entry:last').append('<hr>');
+
         });
 
         $('#education').append(HTMLonlineClasses);
 		//Loop over resume's online courses
-        education.onlineCourses.forEach(function(course) {
+        education.onlineCourses.forEach(function(course, index) {
             $('#education').append(HTMLschoolStart);
             $('.education-entry:last').append(HTMLonlineTitle.replace(DATA_PLACEHOLDER, course.title) +
                 HTMLonlineSchool.replace(DATA_PLACEHOLDER, course.school));
             $('.education-entry:last').append(HTMLonlineDates.replace(DATA_PLACEHOLDER, course.dates));
             $('.education-entry:last').append(HTMLonlineURL.replace(
                 DATA_PLACEHOLDER, course.url));
+            if(index < education.onlineCourses.length-1) {
+                	$('.education-entry:last').append('<hr>');
+                }
         });
     }
 };
@@ -184,20 +190,22 @@ let work = {
     ],
     display: function() {
         //loop over resume's jobs
-        work.jobs.forEach(function(element) {
+        work.jobs.forEach(function(element, index) {
             $('#workExperience').append(HTMLworkStart);
             $('.work-entry:last').append(HTMLworkEmployer.replace(DATA_PLACEHOLDER, element.employer)
             	+ HTMLworkTitle.replace(DATA_PLACEHOLDER, element.title))
                 .append(HTMLworkDates.replace(DATA_PLACEHOLDER, element.dates))
                 .append(HTMLworkLocation.replace(DATA_PLACEHOLDER, element.location))
                 .append(HTMLworkDescription.replace(DATA_PLACEHOLDER, element.description));
+                if(index < work.jobs.length-1) {
+                	$('.work-entry:last').append('<hr>');
+                }
         });
     }
 };
 
 
 /* My projects' info. */
-
 let projects = {
     projects: [
 	    {
@@ -241,9 +249,12 @@ let projects = {
 function updateLinks() {
 	let links = $('a');
 	for(let i=0; i<links.length; i++) {
-		isValidURL(links[i].text)? $(links[i]).attr('href', links[i].text)
-			: $(links[i]).attr('href', new URL(GOOGLE_SEARCH_QUERY + links[i].text));
-		$(links[i]).attr('target', '_blank');
+		// isValidURL(links[i].text)? $(links[i]).attr('href', links[i].text)
+		// 	: $(links[i]).attr('href', new URL(GOOGLE_SEARCH_QUERY + links[i].text));
+		if(isValidURL(links[i].text)) {
+			$(links[i]).attr('href', links[i].text);
+			$(links[i]).attr('target', '_blank');
+		}
 	}
 };
 
