@@ -3,6 +3,7 @@
 /*General*/
 body {
 	font-family: 'Lato', 'Sans Serif';
+  background-color: #f3f1f1;
 }
 
 ul {
@@ -28,12 +29,14 @@ ul {
 }
 
 .card-box {
+  background-color: #fff;
   border: 1px solid lightgray;
   border-radius: 4px;
   -webkit-box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
   -moz-box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
   box-shadow: 0px 0px 18px 3px rgba(214,207,214,1);
   margin: 20px 0;
+  padding: 20px;
   width: 100%;
   max-width: 100%;
 }
@@ -44,6 +47,7 @@ ul {
 }
 
 /*Navigation Styles*/
+.nav-link.active,
 .nav-link:focus,
 .nav-link:active {
   background-color: #F18D9E;
@@ -69,17 +73,17 @@ ul {
 
 /*Work Experience*/
 #workExperience {
-  padding: 20px;
+
 }
 
 /*Projects*/
 #projects {
-  padding: 20px;
+
 }
 
 /*Education*/
 #education {
-  padding: 20px;
+
 }
 
 /*Google Map*/
@@ -92,11 +96,12 @@ ul {
 #mapDiv {
   height: 400px;
   width: 100%;
-  padding-bottom: 5%;
+/*  padding-bottom: 5%;*/
 }
 
 /*Footer (Let's connect)*/
 #lets-connect {
+  align-items: center;
   text-align: center;
 }
 

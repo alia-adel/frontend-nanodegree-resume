@@ -55,6 +55,14 @@ let bio = {
 let education = {
     schools: [
 	    {
+	        name: 'Project Management Diploma',
+	        location: 'Al Zamalek, Cairo, Egypt',
+	        degree: 'PMP Preparation',
+	        majors: ['Project Management'],
+	        dates: 'August 2013 - December 2013',
+	        url: 'http://www.riti.org/'
+	    },
+	    {
 	        name: 'Information Technology Institute',
 	        location: 'Giza, Cairo, Egypt',
 	        degree: 'Pre-Master',
@@ -107,12 +115,6 @@ let education = {
 	        school: 'Udacity',
 	        dates: '2017',
 	        url: 'https://classroom.udacity.com/courses/ud304'
-	    },
-	    {
-	        title: 'Project Management Diploma',
-	        school: 'RITI',
-	        dates: '2014',
-	        url: 'http://www.riti.org/'
 	    },
 	    {
 	        title: 'SCJP- Sun Certified Programmer for Java 2 Platform 1.4',
